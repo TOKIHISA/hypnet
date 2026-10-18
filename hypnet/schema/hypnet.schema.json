@@ -1,0 +1,611 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "title": "hypnet node",
+ "oneOf": [
+  {
+   "$ref": "#/$defs/Variable"
+  },
+  {
+   "$ref": "#/$defs/Source"
+  },
+  {
+   "$ref": "#/$defs/Collection"
+  },
+  {
+   "$ref": "#/$defs/Hypothesis"
+  },
+  {
+   "$ref": "#/$defs/KnowledgeNote"
+  }
+ ],
+ "$defs": {
+  "Variable": {
+   "additionalProperties": false,
+   "properties": {
+    "id": {
+     "title": "Id",
+     "type": "string"
+    },
+    "kind": {
+     "const": "variable",
+     "title": "Kind",
+     "type": "string"
+    },
+    "title": {
+     "default": "",
+     "title": "Title",
+     "type": "string"
+    },
+    "definition": {
+     "default": "",
+     "title": "Definition",
+     "type": "string"
+    },
+    "unit": {
+     "default": "",
+     "title": "Unit",
+     "type": "string"
+    },
+    "same_as": {
+     "items": {
+      "type": "string"
+     },
+     "title": "Same As",
+     "type": "array"
+    },
+    "note": {
+     "default": "",
+     "title": "Note",
+     "type": "string"
+    }
+   },
+   "required": [
+    "id",
+    "kind"
+   ],
+   "title": "Variable",
+   "type": "object"
+  },
+  "Source": {
+   "additionalProperties": false,
+   "properties": {
+    "id": {
+     "title": "Id",
+     "type": "string"
+    },
+    "kind": {
+     "const": "source",
+     "title": "Kind",
+     "type": "string"
+    },
+    "title": {
+     "default": "",
+     "title": "Title",
+     "type": "string"
+    },
+    "authors": {
+     "items": {
+      "type": "string"
+     },
+     "title": "Authors",
+     "type": "array"
+    },
+    "year": {
+     "anyOf": [
+      {
+       "type": "integer"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Year"
+    },
+    "venue": {
+     "default": "",
+     "title": "Venue",
+     "type": "string"
+    },
+    "doi": {
+     "default": "",
+     "title": "Doi",
+     "type": "string"
+    },
+    "url": {
+     "default": "",
+     "title": "Url",
+     "type": "string"
+    },
+    "note": {
+     "default": "",
+     "title": "Note",
+     "type": "string"
+    }
+   },
+   "required": [
+    "id",
+    "kind"
+   ],
+   "title": "Source",
+   "type": "object"
+  },
+  "Context": {
+   "additionalProperties": false,
+   "properties": {
+    "place": {
+     "default": "",
+     "title": "Place",
+     "type": "string"
+    },
+    "period": {
+     "default": "",
+     "title": "Period",
+     "type": "string"
+    },
+    "population": {
+     "default": "",
+     "title": "Population",
+     "type": "string"
+    }
+   },
+   "title": "Context",
+   "type": "object"
+  },
+  "Purpose": {
+   "additionalProperties": false,
+   "properties": {
+    "ends": {
+     "title": "Ends",
+     "type": "string"
+    },
+    "beneficiaries": {
+     "items": {
+      "type": "string"
+     },
+     "title": "Beneficiaries",
+     "type": "array"
+    },
+    "must_not": {
+     "items": {
+      "type": "string"
+     },
+     "title": "Must Not",
+     "type": "array"
+    }
+   },
+   "required": [
+    "ends"
+   ],
+   "title": "Purpose",
+   "type": "object"
+  },
+  "PurposeRevision": {
+   "additionalProperties": false,
+   "properties": {
+    "on": {
+     "format": "date",
+     "title": "On",
+     "type": "string"
+    },
+    "previous": {
+     "$ref": "#/$defs/Purpose"
+    },
+    "reason": {
+     "title": "Reason",
+     "type": "string"
+    },
+    "born_from": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Born From"
+    },
+    "by": {
+     "default": "",
+     "title": "By",
+     "type": "string"
+    }
+   },
+   "required": [
+    "on",
+    "previous",
+    "reason"
+   ],
+   "title": "PurposeRevision",
+   "type": "object"
+  },
+  "Collection": {
+   "additionalProperties": false,
+   "properties": {
+    "id": {
+     "title": "Id",
+     "type": "string"
+    },
+    "kind": {
+     "const": "collection",
+     "title": "Kind",
+     "type": "string"
+    },
+    "role": {
+     "default": "analysis",
+     "enum": [
+      "analysis",
+      "literature",
+      "reading"
+     ],
+     "title": "Role",
+     "type": "string"
+    },
+    "title": {
+     "default": "",
+     "title": "Title",
+     "type": "string"
+    },
+    "question": {
+     "default": "",
+     "title": "Question",
+     "type": "string"
+    },
+    "purpose": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/Purpose"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null
+    },
+    "purpose_revisions": {
+     "items": {
+      "$ref": "#/$defs/PurposeRevision"
+     },
+     "title": "Purpose Revisions",
+     "type": "array"
+    },
+    "measurable": {
+     "items": {
+      "type": "string"
+     },
+     "title": "Measurable",
+     "type": "array"
+    },
+    "context": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/Context"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null
+    },
+    "note": {
+     "default": "",
+     "title": "Note",
+     "type": "string"
+    }
+   },
+   "required": [
+    "id",
+    "kind"
+   ],
+   "title": "Collection",
+   "type": "object"
+  },
+  "Claim": {
+   "additionalProperties": false,
+   "properties": {
+    "subject": {
+     "title": "Subject",
+     "type": "string"
+    },
+    "relation": {
+     "title": "Relation",
+     "type": "string"
+    },
+    "object": {
+     "title": "Object",
+     "type": "string"
+    },
+    "given": {
+     "items": {
+      "type": "string"
+     },
+     "title": "Given",
+     "type": "array"
+    },
+    "context": {
+     "$ref": "#/$defs/Context"
+    }
+   },
+   "required": [
+    "subject",
+    "relation",
+    "object"
+   ],
+   "title": "Claim",
+   "type": "object"
+  },
+  "Evidence": {
+   "additionalProperties": false,
+   "properties": {
+    "by": {
+     "title": "By",
+     "type": "string"
+    },
+    "kind": {
+     "enum": [
+      "confirm",
+      "literature",
+      "explore",
+      "other"
+     ],
+     "title": "Kind",
+     "type": "string"
+    },
+    "effect": {
+     "enum": [
+      "supports",
+      "refutes",
+      "inconclusive"
+     ],
+     "title": "Effect",
+     "type": "string"
+    },
+    "metric": {
+     "additionalProperties": {
+      "anyOf": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "integer"
+       },
+       {
+        "type": "string"
+       }
+      ]
+     },
+     "title": "Metric",
+     "type": "object"
+    },
+    "note": {
+     "default": "",
+     "title": "Note",
+     "type": "string"
+    },
+    "ref": {
+     "default": "",
+     "title": "Ref",
+     "type": "string"
+    }
+   },
+   "required": [
+    "by",
+    "kind",
+    "effect"
+   ],
+   "title": "Evidence",
+   "type": "object"
+  },
+  "Hypothesis": {
+   "additionalProperties": false,
+   "properties": {
+    "id": {
+     "title": "Id",
+     "type": "string"
+    },
+    "kind": {
+     "const": "hypothesis",
+     "title": "Kind",
+     "type": "string"
+    },
+    "collection": {
+     "title": "Collection",
+     "type": "string"
+    },
+    "statement": {
+     "title": "Statement",
+     "type": "string"
+    },
+    "origin": {
+     "enum": [
+      "analyst",
+      "claude",
+      "stakeholder",
+      "literature",
+      "transfer",
+      "inference",
+      "other"
+     ],
+     "title": "Origin",
+     "type": "string"
+    },
+    "status": {
+     "default": "proposed",
+     "enum": [
+      "proposed",
+      "testing",
+      "supported",
+      "refuted",
+      "abandoned",
+      "superseded"
+     ],
+     "title": "Status",
+     "type": "string"
+    },
+    "born_from": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Born From"
+    },
+    "parents": {
+     "items": {
+      "type": "string"
+     },
+     "title": "Parents",
+     "type": "array"
+    },
+    "claim": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/Claim"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null
+    },
+    "evidence": {
+     "items": {
+      "$ref": "#/$defs/Evidence"
+     },
+     "title": "Evidence",
+     "type": "array"
+    },
+    "premise_reviewed": {
+     "items": {
+      "type": "string"
+     },
+     "title": "Premise Reviewed",
+     "type": "array"
+    },
+    "priority": {
+     "anyOf": [
+      {
+       "type": "number"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Priority"
+    },
+    "round": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Round"
+    },
+    "created": {
+     "anyOf": [
+      {
+       "format": "date",
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Created"
+    },
+    "updated": {
+     "anyOf": [
+      {
+       "format": "date",
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Updated"
+    },
+    "note": {
+     "default": "",
+     "title": "Note",
+     "type": "string"
+    },
+    "ref": {
+     "default": "",
+     "title": "Ref",
+     "type": "string"
+    }
+   },
+   "required": [
+    "id",
+    "kind",
+    "collection",
+    "statement",
+    "origin"
+   ],
+   "title": "Hypothesis",
+   "type": "object"
+  },
+  "KnowledgeNote": {
+   "additionalProperties": false,
+   "properties": {
+    "id": {
+     "title": "Id",
+     "type": "string"
+    },
+    "kind": {
+     "const": "knowledge",
+     "title": "Kind",
+     "type": "string"
+    },
+    "scope": {
+     "default": "",
+     "title": "Scope",
+     "type": "string"
+    },
+    "endorsed": {
+     "default": false,
+     "title": "Endorsed",
+     "type": "boolean"
+    },
+    "endorsed_on": {
+     "anyOf": [
+      {
+       "format": "date",
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Endorsed On"
+    },
+    "note": {
+     "default": "",
+     "title": "Note",
+     "type": "string"
+    }
+   },
+   "required": [
+    "id",
+    "kind"
+   ],
+   "title": "KnowledgeNote",
+   "type": "object"
+  }
+ }
+}

@@ -1,0 +1,54 @@
+nodes:
+  # ---- 文献の主張（主張の要約は要旨に基づく簡略化） ----
+  - id: lit.H001
+    kind: hypothesis
+    collection: lit
+    statement: 街路の中心性（特に媒介中心性）が高い地区ほど、小売・サービスが集積する
+    origin: literature
+    status: supported
+    born_from: src.porta2009
+    claim: {subject: var.road_centrality, relation: increases, object: var.retail_density,
+            context: {place: "wikidata:Q1891", population: ボローニャの街路と小売・サービス}}
+    evidence: [{by: src.porta2009, kind: literature, effect: supports}]
+  - id: lit.H002
+    kind: hypothesis
+    collection: lit
+    statement: 保育の利用可能性が高まると、完結出生力が高まる
+    origin: literature
+    status: supported
+    born_from: src.rindfuss2010
+    claim: {subject: var.childcare_rate, relation: increases, object: var.birth_rate,
+            context: {place: "wikidata:Q20", population: ノルウェーの女性（縦断データ）}}
+    evidence: [{by: src.rindfuss2010, kind: literature, effect: supports}]
+  - id: lit.H003
+    kind: hypothesis
+    collection: lit
+    statement: 自治体の保育利用率と第2子・第3子の出生に有意な関連はない（固定効果モデル）
+    origin: literature
+    status: refuted
+    born_from: src.lappegard2008
+    claim: {subject: var.childcare_rate, relation: increases, object: var.birth_rate,
+            context: {place: "wikidata:Q20", population: ノルウェーの母親（1995–2002年・第2子と第3子）}}
+    evidence: [{by: src.lappegard2008, kind: literature, effect: refutes}]
+  - id: lit.H004
+    kind: hypothesis
+    collection: lit
+    statement: 道路網の複雑さは、路上の介入が歩行挙動に与える効果を抑える
+    origin: literature
+    status: supported
+    born_from: src.visible_structure2026
+    claim: {subject: var.network_complexity, relation: moderates, object: var.pedestrian_response,
+            given: [var.street_intervention], context: {place: "jis:13", population: 山手線・総武線の駅前15地点の歩行者}}
+    evidence: [{by: src.visible_structure2026, kind: literature, effect: supports, metric: {rho: 0.589, p: 0.021, n: 15}}]
+    note: n=15。多重比較の補正は記事に記載がない
+  # ---- 自分の分析（どの道具で分析したかは問わない。結果と、根拠の種類と、参照だけを書く） ----
+  - id: my_city.H001
+    kind: hypothesis
+    collection: my_city
+    statement: 区内では、道路網が入り組んだ通りほど店舗が多い
+    origin: analyst
+    status: testing
+    claim: {subject: var.network_complexity, relation: increases, object: var.retail_density,
+            context: {place: "jis:13", population: 自分の住む区の街路}}
+    evidence: [{by: my_notebook_2026-10, kind: explore, effect: supports, ref: "file://notebooks/complexity.ipynb",
+                note: 探索で見えただけ。取っておいた地区ではまだ確かめていない}]

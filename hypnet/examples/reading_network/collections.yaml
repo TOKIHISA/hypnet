@@ -1,0 +1,16 @@
+nodes:
+  - id: lit
+    kind: collection
+    role: literature
+    title: 読んだ文献の主張
+  - id: my_city
+    kind: collection
+    role: analysis
+    title: 自分の街の歩行環境（手作業の分析）
+    question: 道路網の構造は、街の商業と歩行にどう効いているか
+    purpose:
+      ends: 自分の街の歩行環境の成り立ちを理解する
+      beneficiaries: [自分, 同じ関心を持つ人]
+      must_not: [個人の追跡・特定]
+    measurable: [var.road_centrality, var.retail_density, var.network_complexity]
+    context: {place: "jis:13", population: 自分の住む区の街路}

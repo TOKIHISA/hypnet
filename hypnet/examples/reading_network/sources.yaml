@@ -1,0 +1,30 @@
+nodes:
+  - id: src.porta2009
+    kind: source
+    title: Street centrality and densities of retail and services in Bologna, Italy
+    authors: [Porta, S., Strano, E., Iacoviello, V., Messora, R., Latora, V., Cardillo, A., Wang, F., Scellato, S.]
+    year: 2009
+    venue: "Environment and Planning B: Planning and Design, 36(3), 450–465"
+    doi: 10.1068/b34098
+    url: https://arxiv.org/abs/physics/0701111
+  - id: src.rindfuss2010
+    kind: source
+    title: Child-care availability and fertility in Norway
+    authors: [Rindfuss, R. R., Guilkey, D. K., Morgan, S. P., Kravdal, Ø.]
+    year: 2010
+    venue: Population and Development Review, 36(4), 725–748
+    doi: 10.1111/j.1728-4457.2010.00355.x
+    url: https://pmc.ncbi.nlm.nih.gov/articles/PMC3099220
+  - id: src.lappegard2008
+    kind: source
+    title: "Family policies and fertility: ... continued childbearing in Norway"
+    authors: [Lappegård, T.]
+    year: 2008
+    venue: Statistics Norway, Discussion Papers No. 564
+    url: https://www.ssb.no/publikasjoner/pdf/dp564.pdf
+  - id: src.visible_structure2026
+    kind: source
+    title: Urban visible structure mediates the effect of intervention on pedestrian behavior
+    year: 2026
+    venue: dev.to
+    url: https://dev.to/bonebasket_a3284c91925b56/urban-visible-structure-mediates-the-effect-of-intervention-on-pedestrian-behavior-2j5m

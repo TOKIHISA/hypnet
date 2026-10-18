@@ -1,0 +1,7 @@
+# hypnet のネットワーク（手書きの例）。分析ハーネスを使わず、YAML だけで組んでいる。
+name: reading-network
+rules:
+  budget_per_round: 5      # 1ラウンドで承認できる、人間を介さない新規仮説の上限
+  max_auto_depth: 2        # 人間を介さない派生が続いてよい段数
+  purpose_gate: true       # 目的を宣言していないまとまりには、転移・推論・文献の仮説を流れ込ませない
+  ledger: off              # 承認台帳を使うなら error / warn

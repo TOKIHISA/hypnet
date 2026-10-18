@@ -1,0 +1,8 @@
+nodes:
+  - {id: var.road_centrality, kind: variable, title: 道路網の中心性, definition: 道路ネットワーク上の媒介中心性, same_as: ["custom:road_betweenness"]}
+  - {id: var.retail_density, kind: variable, title: 小売事業所密度, same_as: ["custom:retail_establishment_density"]}
+  - {id: var.childcare_rate, kind: variable, title: 保育の利用可能性, same_as: ["custom:childcare_availability"]}
+  - {id: var.birth_rate, kind: variable, title: 出生力, same_as: ["custom:fertility"]}
+  - {id: var.network_complexity, kind: variable, title: 道路網の複雑さ, definition: 半径100mの道路網特徴量の第2主成分}
+  - {id: var.pedestrian_response, kind: variable, title: 歩行挙動の変化, definition: 介入前後の歩行特徴量の非対称KL比}
+  - {id: var.street_intervention, kind: variable, title: 路上の介入}
