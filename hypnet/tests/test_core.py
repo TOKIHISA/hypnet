@@ -1,4 +1,4 @@
-"""hypnet 単体のテスト。分析ハーネス（hypograph）を一切使わない。"""
+"""hypnet 単体のテスト。"""
 import json
 import shutil
 import sys
